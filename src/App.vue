@@ -25,7 +25,7 @@
       <li
         v-for="(task, i) in tasks"
         :key="task"
-        v-text="i + 1 + '. ' + task"
+        v-text=" `${i + 1 }- ${task}`"
         @click="tasks.splice(i, 1)"
         class="cursor-pointer hover:opacity-70 p-2 bg-gray-200 rounded-lg"
       ></li>
