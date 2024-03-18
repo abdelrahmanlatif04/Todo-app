@@ -1,5 +1,5 @@
 <template>
-  <div class="body w-full h-[100vh] relative">
+  <div class="body w-full h-[100vh] relative md:px-5">
     <h1
       class="text-6xl text-center tracking-widest font-semibold text-gray-500 pt-10"
     >
@@ -25,7 +25,7 @@
       <li
         v-for="(task, i) in tasks"
         :key="task"
-        v-text=" `${i + 1 }- ${task}`"
+        v-text="`${i + 1}- ${task}`"
         @click="tasks.splice(i, 1)"
         class="cursor-pointer hover:opacity-70 p-2 bg-gray-200 rounded-lg"
       ></li>
@@ -62,6 +62,10 @@ export default {
 
 <style scoped>
 .width {
-  @apply min-w-96 max-w-[600px] w-3/5 left-1/2 -translate-x-1/2;
+  @apply min-w-80 max-w-[600px] w-3/5 left-1/2 -translate-x-1/2;
 }
 </style>
+
+<!-- for later
+  store the tasks in the local storage
+-->
