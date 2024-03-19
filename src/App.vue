@@ -25,9 +25,15 @@
       <li
         v-for="(task, i) in tasks"
         :key="task"
-        v-text="`${i + 1}- ${task}`"
-        @click="tasks.splice(i, 1)"
-        class="cursor-pointer hover:opacity-70 p-2 bg-gray-200 rounded-lg"
+        v-text="task"
+        @click="completeTask(i)"
+        @contextmenu="deleteTask(i)"
+      ></li>
+      <li
+        class="completed"
+        v-for="(task, i) in comTasks"
+        :key="task"
+        v-text="task"
       ></li>
     </ul>
   </div>
@@ -40,6 +46,7 @@ export default {
     return {
       val: "",
       tasks: [],
+      comTasks: [],
       invalidValue: false,
     };
   },
@@ -56,6 +63,13 @@ export default {
         this.addTask();
       }
     },
+    completeTask(i) {
+      this.comTasks.push(this.tasks[i]);
+      this.deleteTask(i);
+    },
+    deleteTask(i) {
+      this.tasks.splice(i, 1);
+    },
   },
 };
 </script>
@@ -64,8 +78,15 @@ export default {
 .width {
   @apply min-w-80 max-w-[600px] w-3/5 left-1/2 -translate-x-1/2;
 }
+li {
+  @apply p-2 bg-gray-200 rounded-lg relative cursor-pointer hover:opacity-70;
+}
+li::before {
+  content: "";
+  @apply -translate-x-1/2 -translate-y-1/2 top-5 right-0 rounded-sm absolute aspect-square h-5 border-gray-600 border bg-gray-200;
+}
+li.completed::before {
+  content: url("../src/assets/checkmark-outline.svg");
+  @apply -translate-x-1/2 -translate-y-1/2 top-5 right-0 rounded-sm absolute aspect-square h-5 border-gray-600 border bg-gray-200 bg-gradient-to-tl from-orange-300 to-gray-300;
+}
 </style>
-
-<!-- for later
-  store the tasks in the local storage
--->
