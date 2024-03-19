@@ -27,14 +27,14 @@
         :key="task"
         v-text="task"
         @click="completeTask(i)"
-        @contextmenu="deleteTask(i)"
+        @contextmenu="deleteTask(this.tasks, i)"
       ></li>
       <li
         class="completed"
         v-for="(task, i) in comTasks"
         :key="task"
         v-text="task"
-        @contextmenu="deleteTask(i)"
+        @contextmenu="deleteTask(this.comTasks, i)"
       ></li>
     </ul>
   </div>
@@ -66,10 +66,10 @@ export default {
     },
     completeTask(i) {
       this.comTasks.push(this.tasks[i]);
-      this.deleteTask(i);
+      this.deleteTask(this.tasks, i);
     },
-    deleteTask(i) {
-      this.tasks.splice(i, 1);
+    deleteTask(arr, i) {
+      arr.splice(i, 1);
     },
   },
 };
