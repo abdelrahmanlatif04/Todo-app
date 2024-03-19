@@ -34,6 +34,7 @@
         v-for="(task, i) in comTasks"
         :key="task"
         v-text="task"
+        @contextmenu="deleteTask(i)"
       ></li>
     </ul>
   </div>
