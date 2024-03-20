@@ -99,7 +99,7 @@ export default {
 <style scoped>
 h1::before{
   content: "Procrastinate like a pro";
-  @apply absolute -bottom-10 tracking-wide text-orange-500 left-1/2 text-lg -translate-x-1/2
+  @apply absolute -bottom-10 tracking-wide text-orange-500 left-1/2 text-lg -translate-x-1/2 w-full
 }
 .width {
   @apply min-w-80 max-w-[600px] w-3/5 left-1/2 -translate-x-1/2;
