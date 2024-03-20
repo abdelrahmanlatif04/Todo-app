@@ -97,6 +97,6 @@ li.completed::before {
   @apply -translate-x-1/2 -translate-y-1/2 top-5 right-0 rounded-sm absolute aspect-square h-5 border-gray-600 border bg-gray-200 bg-gradient-to-tl from-orange-300 to-gray-300;
 }
 img {
-  @apply h-1/2 absolute top-1/2 -right-5 -translate-y-1/2 hover:scale-125 transition duration-300;
+  @apply h-1/2 absolute top-1/2 -right-5 md:-right-8 -translate-y-1/2 hover:scale-125 transition duration-300;
 }
 </style>
