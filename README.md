@@ -4,12 +4,7 @@ This is a simple Todo application built with Vue.js and styled with Tailwind CSS
 
 ## Features
 
+- randomly-chosen placeholders
 - Add new todos
-- Delete the completed todos
-
-## Demo
-
-You can view the live demo of the Todo app [here](https://super-todo-app.vercel.app/).
-
-or scan this QR code
-![QR code for the site](src/assets/qr-code.svg)
+- mark the completed todos
+- Delete the todos both(completed or not)
