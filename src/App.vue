@@ -1,6 +1,7 @@
 <template>
   <div class="body w-full h-[100vh] relative md:px-5">
     <h1
+      @click="bringBackData()"
       class="text-6xl text-center relative tracking-widest font-semibold text-gray-500 pt-10"
     >
       TODO APP
@@ -56,6 +57,9 @@ export default {
       invalidValue: false,
     };
   },
+  created() {
+    this.bringBackData();
+  },
   methods: {
     addTask() {
       if (this.val) {
@@ -63,6 +67,7 @@ export default {
         this.tasks.push(this.val);
         this.val = null;
         this.placeHolding();
+        this.storeTasks();
       }
     },
     pressed() {
@@ -74,10 +79,12 @@ export default {
       if (this.tasks[i]) {
         this.comTasks.push(this.tasks[i]);
         this.deleteTask(this.tasks, i);
+        this.storeTasks();
       }
     },
     deleteTask(arr, i) {
       arr.splice(i, 1);
+      this.storeTasks();
     },
     placeHolding() {
       let input = document.querySelector("input");
@@ -90,16 +97,31 @@ export default {
         "Find sock thief in laundry.",
         "Broker coffee-alarm peace deal.",
       ];
-      input.setAttribute("placeholder", placeholdersExamples[Math.floor(Math.random() * 6)]);
+      input.setAttribute(
+        "placeholder",
+        placeholdersExamples[Math.floor(Math.random() * 6)]
+      );
+    },
+    storeTasks() {
+      localStorage.setItem("in-completed-tasks", JSON.stringify(this.tasks));
+      localStorage.setItem("completed-tasks", JSON.stringify(this.comTasks));
+    },
+    bringBackData() {
+      if (localStorage.getItem("completed-tasks") !== "[]") {
+        this.comTasks = JSON.parse(localStorage.getItem("completed-tasks"));
+      }
+      if (localStorage.getItem("in-completed-tasks") !== "[]") {
+        this.tasks = JSON.parse(localStorage.getItem("in-completed-tasks"));
+      }
     },
   },
 };
 </script>
 
 <style scoped>
-h1::before{
+h1::before {
   content: "Procrastinate like a pro";
-  @apply absolute -bottom-10 tracking-wide text-orange-500 left-1/2 text-lg -translate-x-1/2 w-full
+  @apply absolute -bottom-10 tracking-wide text-orange-500 left-1/2 text-lg -translate-x-1/2 w-full;
 }
 .width {
   @apply min-w-80 max-w-[600px] w-3/5 left-1/2 -translate-x-1/2;
