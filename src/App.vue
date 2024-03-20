@@ -16,7 +16,7 @@
         Add task
       </button>
       <input
-        placeholder="Convince the cat to do the dishes"
+        :placeholder="`Ex : ${placeHolding()}`"
         type="text"
         class="w-full pl-4 py-2 pr-12 text-xl bg-gray-200 outline-none"
         @keydown="pressed()"
@@ -87,7 +87,6 @@ export default {
       this.storeTasks();
     },
     placeHolding() {
-      let input = document.querySelector("input");
       let placeholdersExamples = [
         "Convince the cat to do the dishes",
         "Practice my Oscar acceptance speech",
@@ -97,22 +96,15 @@ export default {
         "Find sock thief in laundry.",
         "Broker coffee-alarm peace deal.",
       ];
-      input.setAttribute(
-        "placeholder",
-        placeholdersExamples[Math.floor(Math.random() * 6)]
-      );
+      return placeholdersExamples[Math.floor(Math.random() * 6)];
     },
     storeTasks() {
       localStorage.setItem("in-completed-tasks", JSON.stringify(this.tasks));
       localStorage.setItem("completed-tasks", JSON.stringify(this.comTasks));
     },
     bringBackData() {
-      if (localStorage.getItem("completed-tasks") !== "[]") {
-        this.comTasks = JSON.parse(localStorage.getItem("completed-tasks"));
-      }
-      if (localStorage.getItem("in-completed-tasks") !== "[]") {
-        this.tasks = JSON.parse(localStorage.getItem("in-completed-tasks"));
-      }
+      this.comTasks = JSON.parse(localStorage.getItem("completed-tasks"));
+      this.tasks = JSON.parse(localStorage.getItem("in-completed-tasks"));
     },
   },
 };
