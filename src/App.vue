@@ -1,7 +1,7 @@
 <template>
   <div class="body w-full h-[100vh] relative md:px-5">
     <h1
-      class="text-6xl text-center tracking-widest font-semibold text-gray-500 pt-10"
+      class="text-6xl text-center relative tracking-widest font-semibold text-gray-500 pt-10"
     >
       TODO APP
     </h1>
@@ -97,6 +97,10 @@ export default {
 </script>
 
 <style scoped>
+h1::before{
+  content: "Procrastinate like a pro";
+  @apply absolute -bottom-10 tracking-wide text-orange-500 left-1/2 text-lg -translate-x-1/2
+}
 .width {
   @apply min-w-80 max-w-[600px] w-3/5 left-1/2 -translate-x-1/2;
 }
