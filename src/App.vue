@@ -22,20 +22,24 @@
       />
     </div>
     <ul class="relative top-20 width flex flex-col gap-2">
+      <li v-for="(task, i) in tasks" :key="task">
+        <div @click="completeTask(i)">{{ task }}</div>
+        <img
+          @click="deleteTask(this.tasks, i)"
+          src="../src/assets/trash-outline.svg"
+        />
+      </li>
       <li
-        v-for="(task, i) in tasks"
-        :key="task"
-        v-text="task"
-        @click="completeTask(i)"
-        @contextmenu="deleteTask(this.tasks, i)"
-      ></li>
-      <li
-        class="completed"
+        class="completed text-gray-600 line-through"
         v-for="(task, i) in comTasks"
         :key="task"
-        v-text="task"
-        @contextmenu="deleteTask(this.comTasks, i)"
-      ></li>
+      >
+        <div>{{ task }}</div>
+        <img
+          @click="deleteTask(this.comTasks, i)"
+          src="../src/assets/trash-outline.svg"
+        />
+      </li>
     </ul>
   </div>
 </template>
@@ -65,8 +69,10 @@ export default {
       }
     },
     completeTask(i) {
-      this.comTasks.push(this.tasks[i]);
-      this.deleteTask(this.tasks, i);
+      if (this.tasks[i]) {
+        this.comTasks.push(this.tasks[i]);
+        this.deleteTask(this.tasks, i);
+      }
     },
     deleteTask(arr, i) {
       arr.splice(i, 1);
@@ -89,5 +95,8 @@ li::before {
 li.completed::before {
   content: url("../src/assets/checkmark-outline.svg");
   @apply -translate-x-1/2 -translate-y-1/2 top-5 right-0 rounded-sm absolute aspect-square h-5 border-gray-600 border bg-gray-200 bg-gradient-to-tl from-orange-300 to-gray-300;
+}
+img {
+  @apply h-1/2 absolute top-1/2 -right-20 -translate-y-1/2 hover:border;
 }
 </style>
