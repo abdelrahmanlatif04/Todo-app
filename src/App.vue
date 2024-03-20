@@ -23,7 +23,7 @@
     </div>
     <ul class="relative top-20 width flex flex-col gap-2">
       <li v-for="(task, i) in tasks" :key="task">
-        <div @click="completeTask(i)">{{ task }}</div>
+        <div class="" @click="completeTask(i)">{{ task }}</div>
         <img
           @click="deleteTask(this.tasks, i)"
           src="../src/assets/trash-outline.svg"
@@ -88,15 +88,15 @@ export default {
 li {
   @apply p-2 bg-gray-200 rounded-lg relative cursor-pointer;
 }
-li::before {
+li>div::before {
   content: "";
   @apply -translate-x-1/2 -translate-y-1/2 top-5 right-0 rounded-sm absolute aspect-square h-5 border-gray-600 border bg-gray-200;
 }
-li.completed::before {
+li.completed>div::before {
   content: url("../src/assets/checkmark-outline.svg");
   @apply -translate-x-1/2 -translate-y-1/2 top-5 right-0 rounded-sm absolute aspect-square h-5 border-gray-600 border bg-gray-200 bg-gradient-to-tl from-orange-300 to-gray-300;
 }
 img {
-  @apply h-1/2 absolute top-1/2 -right-5 md:-right-8 -translate-y-1/2 hover:scale-125 transition duration-300;
+  @apply h-1/2 absolute top-1/2 -right-5 sm:-right-8 -translate-y-1/2 hover:scale-125 transition duration-300;
 }
 </style>
