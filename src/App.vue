@@ -15,6 +15,7 @@
         Add task
       </button>
       <input
+        placeholder="Convince the cat to do the dishes"
         type="text"
         class="w-full pl-4 py-2 pr-12 text-xl bg-gray-200 outline-none"
         @keydown="pressed()"
@@ -23,7 +24,7 @@
     </div>
     <ul class="relative top-20 width flex flex-col gap-2">
       <li v-for="(task, i) in tasks" :key="task">
-        <div class="" @click="completeTask(i)">{{ task }}</div>
+        <div class="overflow-hidden" @click="completeTask(i)">{{ task }}</div>
         <img
           @click="deleteTask(this.tasks, i)"
           src="../src/assets/trash-outline.svg"
@@ -34,7 +35,7 @@
         v-for="(task, i) in comTasks"
         :key="task"
       >
-        <div>{{ task }}</div>
+        <div class="overflow-hidden">{{ task }}</div>
         <img
           @click="deleteTask(this.comTasks, i)"
           src="../src/assets/trash-outline.svg"
@@ -61,6 +62,7 @@ export default {
         // push _not unshift()_ to add the new task at the end of line
         this.tasks.push(this.val);
         this.val = null;
+        this.placeHolding();
       }
     },
     pressed() {
@@ -77,6 +79,19 @@ export default {
     deleteTask(arr, i) {
       arr.splice(i, 1);
     },
+    placeHolding() {
+      let input = document.querySelector("input");
+      let placeholdersExamples = [
+        "Convince the cat to do the dishes",
+        "Practice my Oscar acceptance speech",
+        "Teach the toaster to make coffee",
+        "Perfect my ninja skills",
+        "Stare at a wall for world record attempt.",
+        "Find sock thief in laundry.",
+        "Broker coffee-alarm peace deal.",
+      ];
+      input.setAttribute("placeholder", placeholdersExamples[Math.floor(Math.random() * 6)]);
+    },
   },
 };
 </script>
@@ -88,11 +103,11 @@ export default {
 li {
   @apply p-2 bg-gray-200 rounded-lg relative cursor-pointer;
 }
-li>div::before {
+li > div::before {
   content: "";
   @apply -translate-x-1/2 -translate-y-1/2 top-5 right-0 rounded-sm absolute aspect-square h-5 border-gray-600 border bg-gray-200;
 }
-li.completed>div::before {
+li.completed > div::before {
   content: url("../src/assets/checkmark-outline.svg");
   @apply -translate-x-1/2 -translate-y-1/2 top-5 right-0 rounded-sm absolute aspect-square h-5 border-gray-600 border bg-gray-200 bg-gradient-to-tl from-orange-300 to-gray-300;
 }
