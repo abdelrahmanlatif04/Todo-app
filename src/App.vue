@@ -86,7 +86,7 @@ export default {
   @apply min-w-80 max-w-[600px] w-3/5 left-1/2 -translate-x-1/2;
 }
 li {
-  @apply p-2 bg-gray-200 rounded-lg relative cursor-pointer hover:opacity-70;
+  @apply p-2 bg-gray-200 rounded-lg relative cursor-pointer;
 }
 li::before {
   content: "";
@@ -97,6 +97,6 @@ li.completed::before {
   @apply -translate-x-1/2 -translate-y-1/2 top-5 right-0 rounded-sm absolute aspect-square h-5 border-gray-600 border bg-gray-200 bg-gradient-to-tl from-orange-300 to-gray-300;
 }
 img {
-  @apply h-1/2 absolute top-1/2 -right-20 -translate-y-1/2 hover:border;
+  @apply h-1/2 absolute top-1/2 -right-9 -translate-y-1/2 hover:scale-125 transition duration-300;
 }
 </style>
