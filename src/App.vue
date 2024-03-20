@@ -1,7 +1,6 @@
 <template>
   <div class="body w-full h-[100vh] relative md:px-5">
     <h1
-      @click="bringBackData()"
       class="text-6xl text-center relative tracking-widest font-semibold text-gray-500 pt-10"
     >
       TODO APP
@@ -103,8 +102,22 @@ export default {
       localStorage.setItem("completed-tasks", JSON.stringify(this.comTasks));
     },
     bringBackData() {
-      this.comTasks = JSON.parse(localStorage.getItem("completed-tasks"));
-      this.tasks = JSON.parse(localStorage.getItem("in-completed-tasks"));
+      let arr = localStorage.getItem("completed-tasks");
+      if (arr.length > 2) {
+        this.tasks = arr
+          .split("")
+          .splice(2, arr.length - 4)
+          .join("")
+          .split('","');
+      }
+      let comArr = localStorage.getItem("in-completed-tasks");
+      if (comArr.length > 2) {
+        this.tasks = comArr
+          .split("")
+          .splice(2, comArr.length - 4)
+          .join("")
+          .split('","');
+      }
     },
   },
 };
