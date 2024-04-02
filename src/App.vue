@@ -56,8 +56,8 @@ export default {
       invalidValue: false,
     };
   },
-  created() {
-    this.bringBackData();
+  created(){
+    this.bringDataBack()
   },
   methods: {
     addTask() {
@@ -85,6 +85,20 @@ export default {
       arr.splice(i, 1);
       this.storeTasks();
     },
+    storeTasks() {
+      localStorage.setItem("in completed tasks", JSON.stringify(this.tasks));
+      localStorage.setItem("completed tasks", JSON.stringify(this.comTasks));
+    },
+    bringDataBack() {
+      let completedTasks = localStorage.getItem("completed tasks");
+      let inCompletedTasks = localStorage.getItem("in completed tasks");
+      if(completedTasks.length > 2){
+        this.comTasks = JSON.parse(completedTasks)
+      }
+      if(inCompletedTasks.length > 2){
+        this.tasks = JSON.parse(inCompletedTasks)
+      }
+    },
     placeHolding() {
       let placeholdersExamples = [
         "Convince the cat to do the dishes",
@@ -96,28 +110,6 @@ export default {
         "Broker coffee-alarm peace deal.",
       ];
       return placeholdersExamples[Math.floor(Math.random() * 6)];
-    },
-    storeTasks() {
-      localStorage.setItem("in-completed-tasks", JSON.stringify(this.tasks));
-      localStorage.setItem("completed-tasks", JSON.stringify(this.comTasks));
-    },
-    bringBackData() {
-      let arr = localStorage.getItem("completed-tasks");
-      if (arr.length > 2) {
-        this.tasks = arr
-          .split("")
-          .splice(2, arr.length - 4)
-          .join("")
-          .split('","');
-      }
-      let comArr = localStorage.getItem("in-completed-tasks");
-      if (comArr.length > 2) {
-        this.tasks = comArr
-          .split("")
-          .splice(2, comArr.length - 4)
-          .join("")
-          .split('","');
-      }
     },
   },
 };
