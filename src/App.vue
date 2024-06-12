@@ -56,8 +56,8 @@ export default {
       invalidValue: false,
     };
   },
-  created(){
-    this.bringDataBack()
+  created() {
+    this.bringDataBack();
   },
   methods: {
     addTask() {
@@ -65,7 +65,6 @@ export default {
         // push _not unshift()_ to add the new task at the end of line
         this.tasks.push(this.val);
         this.val = null;
-        this.placeHolding();
         this.storeTasks();
       }
     },
@@ -92,13 +91,15 @@ export default {
     bringDataBack() {
       let completedTasks = localStorage.getItem("completed tasks");
       let inCompletedTasks = localStorage.getItem("incompleted tasks");
-      if(completedTasks.length > 2){
-        this.comTasks = JSON.parse(completedTasks)
+      if (completedTasks.length > 2) {
+        this.comTasks = JSON.parse(completedTasks);
       }
-      if(inCompletedTasks.length > 2){
-        this.tasks = JSON.parse(inCompletedTasks)
+      if (inCompletedTasks.length > 2) {
+        this.tasks = JSON.parse(inCompletedTasks);
       }
     },
+  },
+  computed:{
     placeHolding() {
       let placeholdersExamples = [
         "Convince the cat to do the dishes",
