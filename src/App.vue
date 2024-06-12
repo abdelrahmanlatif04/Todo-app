@@ -86,12 +86,12 @@ export default {
       this.storeTasks();
     },
     storeTasks() {
-      localStorage.setItem("in completed tasks", JSON.stringify(this.tasks));
+      localStorage.setItem("incompleted tasks", JSON.stringify(this.tasks));
       localStorage.setItem("completed tasks", JSON.stringify(this.comTasks));
     },
     bringDataBack() {
       let completedTasks = localStorage.getItem("completed tasks");
-      let inCompletedTasks = localStorage.getItem("in completed tasks");
+      let inCompletedTasks = localStorage.getItem("incompleted tasks");
       if(completedTasks.length > 2){
         this.comTasks = JSON.parse(completedTasks)
       }
