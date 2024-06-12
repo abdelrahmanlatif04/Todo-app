@@ -98,8 +98,6 @@ export default {
         this.tasks = JSON.parse(inCompletedTasks);
       }
     },
-  },
-  computed:{
     placeHolding() {
       let placeholdersExamples = [
         "Convince the cat to do the dishes",
@@ -111,8 +109,8 @@ export default {
         "Broker coffee-alarm peace deal.",
       ];
       return placeholdersExamples[Math.floor(Math.random() * 6)];
-    },
   },
+      },
 };
 </script>
 
