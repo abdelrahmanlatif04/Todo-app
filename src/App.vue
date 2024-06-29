@@ -10,7 +10,7 @@
     >
       <button
         @click="addTask()"
-        class="h-full text-sm absolute right-0 font-semibold2 text-gray-200 hover:tracking-widest aspect-square duration-300 transition-all bg-orange-400 bg-[../] z-10 hover:opacity-70"
+        class="h-full text-sm absolute right-0 font-semibold2 text-gray-200 hover:tracking-widest px-2 aspect-square duration-300 transition-all bg-orange-400 z-10 hover:opacity-70"
       >
         Add task
       </button>
